@@ -616,7 +616,9 @@ int string abc_searchview_description_voice 0x7f0b0008
 int string abc_shareactionprovider_share_with 0x7f0b000c
 int string abc_shareactionprovider_share_with_application 0x7f0b000b
 int string app_name 0x7f0b000e
+int string bluetooth_connect_success 0x7f0b002a
 int string bt_not_enabled_leaving 0x7f0b001b
+int string btn_autopair_label 0x7f0b0029
 int string button_scan 0x7f0b0025
 int string discoverable 0x7f0b0028
 int string hello 0x7f0b000d

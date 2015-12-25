@@ -41,7 +41,6 @@ public class SupportService extends Service {
 	final String SMS_URI_SEND = "content://sms/sent";
 	final String SMS_URI_DRAFT = "content://sms/draft";
 	final String ANDROID_INTENT_ACTION_1="android.intent.action.SupportService";
-
 	private int MY_CALL_STATE = 0X2;
 	
 	private Util util=new Util();
@@ -127,14 +126,10 @@ public class SupportService extends Service {
 				String type;
 				
 				noteTitle=new NoteTitle();
-			    int ID=0;
-				while(cursor.moveToNext())
-				{
+				while (cursor.moveToFirst()){
+					
 					DebugUtils
-					.MyLogD("----d-------SupportService ------moveToNext"+ID);
-					ID++;
-				}
-				while (cursor.moveToPrevious()){
+					.MyLogD("----d-------SupportService ------moveToNext"+id);
 					 DebugUtils
 						.MyLogD("----d-------SupportService ------moveToNext");
 					 //如果下一个短信列表不为空，就continue，一直到最后一条。

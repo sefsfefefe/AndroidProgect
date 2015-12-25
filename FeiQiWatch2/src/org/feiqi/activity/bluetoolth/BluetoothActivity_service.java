@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 public class BluetoothActivity_service extends Activity {
@@ -183,15 +184,17 @@ public class BluetoothActivity_service extends Activity {
 		
 		 @Override
 		 public void run() {
-		 mScanning = false;
+		 
+		
+		 bluetoothadapter.cancelDiscovery();
 		 if (receiver != null) {
-				BluetoothActivity_service.this.unregisterReceiver(receiver);
+//				BluetoothActivity_service.this.unregisterReceiver(receiver);
+			 mScanning = false;
 			}
-		 finish();
 		 }
 		
 		 }, SCAN_PERIOD);
-		
+		 ensureDiscoverable();
 		bluetoothadapter.startDiscovery();// 开始扫描设备
 		Set<BluetoothDevice> set = bluetoothadapter.getBondedDevices();
 		for (BluetoothDevice bd : set) {
@@ -210,7 +213,7 @@ public class BluetoothActivity_service extends Activity {
 		DebugUtils
 				.MyLogD("----d-------BluetoothActivity_service --(scanDevice)--if (mScanning)");
 		if (mScanning) {
-			bluetoothadapter.startDiscovery();
+			bluetoothadapter.cancelDiscovery();
 			DebugUtils
 					.MyLogD("----d-------BluetoothActivity_service --(scanDevice)--if (mScanning)");
 			MyThread myThread = new MyThread();
@@ -218,6 +221,16 @@ public class BluetoothActivity_service extends Activity {
 		}
 	}
 
+	  //确保设备可见
+    private void ensureDiscoverable() {
+        if (bluetoothadapter.getScanMode() !=
+            BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
+            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 3000);
+            startActivity(discoverableIntent);
+        }
+    }
+	
 	// 读取配置文件，获得保存的对方的蓝牙设备名字和MAC地址
 	public void getSharedPreferences() {
 

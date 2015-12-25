@@ -10,6 +10,9 @@ import android.os.Bundle;
 
 public class BrodcastDataFenxi {
 
+	public BrodcastDataFenxi(){
+		
+	}
 	public BrodcastDataFenxi(String action_buffer, Intent intent,
 			NoteTitle noteTitle) {
 		if (intent.getAction().equals(action_buffer)) {
@@ -31,10 +34,10 @@ public class BrodcastDataFenxi {
 		}
 	}
 
-	public BrodcastDataFenxi(String action_buffer, Intent intent, String buffer) {
+	public String BrodcastDataFenxi_string(String action_buffer, Intent intent) {
 		Bundle bundle = intent.getExtras();
 		int cmd = bundle.getInt("cmd");
-
+		String buffer=new String();
 		DebugUtils
 				.MyLogD("----d-------BrodcastDataFenxi -----");
 		if (cmd == Util.CMD_SHOW_MSM_CMD) {
@@ -42,12 +45,15 @@ public class BrodcastDataFenxi {
 			DebugUtils
 					.MyLogD("----d-------BrodcastDataFenxi ----->>>"
 							+ buffer);
+			return buffer;
 		}
 		if (cmd == Util.MY_CALL_STATE_CMD) {
 			buffer = bundle.getString(Util.Buffer);
 			DebugUtils
 					.MyLogD("----d-------BrodcastDataFenxi ----->>>"
 							+ buffer);
+			return buffer;
 		}
+		return buffer;
 	}
 }

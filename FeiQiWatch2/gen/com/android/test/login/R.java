@@ -1799,7 +1799,9 @@ containing a value of this type.
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0b000b;
         public static final int app_name=0x7f0b000e;
+        public static final int bluetooth_connect_success=0x7f0b002a;
         public static final int bt_not_enabled_leaving=0x7f0b001b;
+        public static final int btn_autopair_label=0x7f0b0029;
         public static final int button_scan=0x7f0b0025;
         public static final int discoverable=0x7f0b0028;
         public static final int hello=0x7f0b000d;

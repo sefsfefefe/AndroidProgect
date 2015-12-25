@@ -26,7 +26,7 @@ public class Util {
 	public static String CONNETC_FALSE = "链接失败！";
 	public static String CONNETC_NULL = "数据为空！";
 
-	
+	public static String strPsw = "0000";
 
 	public String getBuffer() {
 		return Buffer;
