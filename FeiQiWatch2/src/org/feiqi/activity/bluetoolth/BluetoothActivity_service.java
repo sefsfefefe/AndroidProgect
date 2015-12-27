@@ -57,12 +57,25 @@ public class BluetoothActivity_service extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-
+		openLostBell();
 		Intent intent2 = new Intent(BluetoothActivity_service.this,
 				SupportService.class);
 		startService(intent2);
 	}
-
+	public void openLostBell(){
+		setting = new PreferenceSetting(BluetoothActivity_service.this,
+				PreferenceSetting.FILE_NAME);
+		DebugUtils.MyLogD("----d-------BluetoothActivity_service ------openLostBell");
+		Map<String, ?> allPairs_bell = setting.getSetting();
+		if (allPairs_bell != null && !allPairs_bell.isEmpty()) {
+			boolean isLost = (Boolean) allPairs_bell.get(SettingKey.isLost);
+			if(isLost){
+				Intent intent3 = new Intent(BluetoothActivity_service.this,
+						BellsSrvice.class);
+				startService(intent3);
+			}
+		}
+	}
 	private class MyThread extends Thread {
 		@Override
 		public void run() {

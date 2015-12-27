@@ -10,4 +10,6 @@ public class SettingKey {
 	public static final String bluetoolthAddress="MAC";
 	public static final String bluetoolthName="bluetoolthName";
 	public static final String uuid="UUID";
+	
+	public static final String isLost="isLost";
 }

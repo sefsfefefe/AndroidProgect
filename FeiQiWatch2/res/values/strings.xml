@@ -9,7 +9,7 @@
     <string name="login">登 录</string>
     <string name="opt_autoLogin">自动登录</string>
     <string name="opt_Cloud">连接云端</string>
-    <string name="opt_openVibra">开启振动</string>
+    <string name="opt_openVibra">防丢查找</string>
     <string name="opt_cogradient">同步手表</string>
     <string name="login_erweima_text">二维码扫描登入？</string>
     

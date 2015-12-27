@@ -19,6 +19,7 @@ public class Json {
 	{
 		 Log.d(TAG, "Json_pacage(NoteTitle noteTile,int id)\n");
 		noteTitle_json=new JSONObject();
+		JSONObject data_json=new JSONObject();
 		try {
 			if(null!=noteTile.getName())
 			noteTitle_json.put("name", noteTile.getName());
@@ -38,8 +39,9 @@ public class Json {
 			if(null!=noteTile.getType())
 			noteTitle_json.put("type", noteTile.getType());
 			
-			//ID可以用来计数
-			//ID.put("ID="+id, noteTitle_json);
+			data_json.put("long", noteTitle_json.length());
+			data_json.put("data_type", noteTitle_json);
+			
 			 Log.d(TAG, "noteTitle_json.put(noteTile.getType())\n");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -47,8 +49,26 @@ public class Json {
 		}
 //		JSONArray array = new JSONArray();
 //		      array.put(noteTitle_json);
-		      String jsonStr = noteTitle_json.toString();
+		      String jsonStr = data_json.toString();
 		return jsonStr;
+	}
+	
+	
+	public NoteTitle Json_data_unpacage(String buffer) throws JSONException{
+		NoteTitle notetile =new NoteTitle();
+		if(!buffer.isEmpty()){
+			StringBuilder builder = new StringBuilder();
+			builder.append(buffer);
+			JSONObject jsonObject = new JSONObject(builder.toString());
+			notetile.setData_type(jsonObject.getInt("data_type"));
+			notetile.setLong(jsonObject.getInt("long"));
+			if(notetile.getLong()==jsonObject.getJSONObject("content").length()&&!(jsonObject.isNull("content"))){
+				StringBuilder builder_content = new StringBuilder();
+				builder_content.append(jsonObject.getJSONObject("content").toString());
+				JSONObject jsonObject_content=new JSONObject(builder_content.toString());
+			}
+		}
+		return notetile;
 	}
 	
 	public NoteTitle Json_unpacage(String buffer) throws JSONException{
@@ -58,13 +78,13 @@ public class Json {
 			StringBuilder builder = new StringBuilder();
 			builder.append(buffer);
 			JSONObject jsonObject = new JSONObject(builder.toString());
-			if(jsonObject.getString("bluetoolthName").length()!=0)
+			if(!jsonObject.getString("bluetoolthName").isEmpty())
 			notetile.setBluetoolthName(jsonObject.getString("bluetoolthName"));
 			DebugUtils.MyLogD("----d-------Json ------onActivityResult"+notetile.getBluetoolthName());
-			if(null!=jsonObject.getString("bluetoolthAddress"))
+			if(!jsonObject.getString("bluetoolthAddress").isEmpty())
 			notetile.setBluetoolthAddress(jsonObject.getString("bluetoolthAddress"));
 			DebugUtils.MyLogD("----d-------Json ------onActivityResult"+notetile.getBluetoolthAddress());
-			if(null!=jsonObject.getString("MY_UUID"))
+			if(!jsonObject.getString("MY_UUID").isEmpty())
 			notetile.setMY_UUID(jsonObject.getString("MY_UUID"));
 		}
 		

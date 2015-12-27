@@ -40,7 +40,7 @@ public class LoginActivity extends Activity {
 	private CheckBox login_cb_savepwd;//保存密码
 	private CheckBox login_cb_autoLogin;//自动登入
 	private CheckBox login_cb_cogradient;//同步手机信息
-	private CheckBox login_cb_openvibra;//开启震动
+	private CheckBox login_cb_openvibra;//防丢查找
 	private CheckBox login_cb_Cloud;//连接云端
 	
 	private PreferenceSetting setting = null;
@@ -74,6 +74,7 @@ public class LoginActivity extends Activity {
 							}
 							inputMap.put(SettingKey.isAuto, login_cb_autoLogin.isChecked());
 							inputMap.put(SettingKey.isMark, login_cb_savepwd.isChecked());
+							inputMap.put(SettingKey.isLost, login_cb_openvibra.isChecked());
 							setting.saveAllSetting(inputMap);
 						}
 						DebugUtils.MyLogD("----d-------Intent");

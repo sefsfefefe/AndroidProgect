@@ -49,7 +49,7 @@ public class SupportService extends Service {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	/**
 	 * 格式化时间
 	 * 
@@ -77,7 +77,13 @@ public class SupportService extends Service {
 		observer = new MyContentObserver(new Handler());
 		resolver.registerContentObserver(Uri.parse(SMS_URI_ALL), true, observer);
 	}
-
+	
+	@Override
+	public void onStart(Intent intent, int startId) {
+		super.onStart(intent, startId);
+		
+		//注册广播接收器
+	}
 	@Override
 	public void onDestroy() {
 
@@ -126,7 +132,7 @@ public class SupportService extends Service {
 				String type;
 				
 				noteTitle=new NoteTitle();
-				while (cursor.moveToFirst()){
+				if (cursor.moveToFirst()){
 					
 					DebugUtils
 					.MyLogD("----d-------SupportService ------moveToNext"+id);
@@ -184,7 +190,7 @@ public class SupportService extends Service {
 		intent.setAction(action);
 		sendBroadcast(intent);
 	}
-
+	
 	/**
 	 * 电话状态监听器
 	 * 

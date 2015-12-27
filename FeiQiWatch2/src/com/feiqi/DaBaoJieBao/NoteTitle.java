@@ -7,6 +7,11 @@ public class NoteTitle {
 	private String smsbody; // 主体短信内容
 	private String date; // 时间
 	private String type; // 判断短信是发送的，还是接收的
+	
+	//传递的数据格式
+	private int data_type;
+	private int Long;
+	private String content;
 
 	//二维码格式key
 	private String bluetoolthName;
@@ -74,4 +79,30 @@ public class NoteTitle {
 	public void setMY_UUID(String mY_UUID) {
 		MY_UUID = mY_UUID;
 	}
+
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public int getLong() {
+		return Long;
+	}
+
+	public void setLong(int _long) {
+		Long = _long;
+	}
+
+	public int getData_type() {
+		return data_type;
+	}
+
+	public void setData_type(int data_type) {
+		this.data_type = data_type;
+	}
+
 }
